@@ -1,0 +1,14 @@
+{
+  "name": "sceneit",
+  "version": "1.0.0",
+  "description": "SceneIT is a platform for rating movies and series and finding movies and series after taste.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
