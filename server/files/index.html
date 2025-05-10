@@ -1,11 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SceneIT</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SceneIt</title>
+    <link rel="stylesheet" href="/styles/styles.css" />
 </head>
+
 <body>
-    This is startpage!
+    <header class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">
+            SceneIt
+        </div>
+
+        <nav class="nav-buttons">
+            <a href="explore.html" class="btn-primary">Explore</a>
+            <button class="btn-primary" onclick="openModal('loginModal')">
+                Log In
+            </button>
+            <button="signup.html" class="btn-outline" onclick="openModal('signupModal')">
+                Sign Up
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Stop scrolling,<br /><span>start watching</span></h1>
+            <p>Personalized recommendations for Movies and TV-Shows</p>
+            <button class="quizButton" onclick="window.location.href='quiz.html'">
+                Take QUIZ
+            </button>
+        </div>
+    </section>
+
+    <main class="recommendations">
+        <h2>Top Picks</h2>
+        <div class="card-grid" id="recommendations">
+          <!-- movie cards will go here -->
+        </div>
+      </main>
+      
+
+    <footer class="footer">
+        <p>&copy; 2025 SceneIt — All rights reserved.</p>
+    </footer>
+
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Log In</h2>
+            <form id="loginForm">
+                <input type="text" placeholder="Username" required />
+                <input type="password" placeholder="Password" required />
+                <button type="submit" class="btn-primary">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SIGNUP MODAL -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <input type="email" placeholder="Email" required />
+                <input type="password" placeholder="Password" required />
+                <button type="submit" class="btn-primary">Create Account</button>
+            </form>
+            <p style="margin-top: 1rem; font-size: 0.9rem">
+                Already have an account?
+                <a href="#" onclick="switchModals('signupModal', 'loginModal')">Log in</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="modal.js"></script>
+    <script src="movie.js"></script>
+    <script src="homepage.js"></script>
 </body>
+
 </html>

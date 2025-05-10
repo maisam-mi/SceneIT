@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Details</title>
+  <link rel="stylesheet" href="/styles/styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo" onclick="window.location.href='index.html'">SceneIt</div>
+  </header>
+
+  <main id="movieDetails" class="movie-details-container">
+    <!-- Movie details will be injected here -->
+  </main>
+
+  <!-- Trailer Modal -->
+  <div id="trailerModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <iframe id="trailerFrame" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script src="movie.js"></script>
+</body>
+</html>

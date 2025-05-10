@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explore Movies</title>
+  <link rel="stylesheet" href="/styles/styles.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo" onclick="window.location.href='index.html'">SceneIt</div>
+    <nav class="nav-buttons">
+      <a href="explore.html" class="btn-primary">Explore</a>
+      <a href="#" class="btn-outline" onclick="openModal('loginModal')">Log In</a>
+      <a href="#" class="btn-outline" onclick="openModal('signupModal')">Sign Up</a>
+    </nav>
+  </header>
+
+  <main class="explore-container">
+    <h2>Explore Movies by Genre</h2>
+    <select id="genreSelect" class="dropdown"></select>
+    <div class="card-grid" id="movieResults"></div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 SceneIt — All rights reserved.</p>
+  </footer>
+
+  <!-- Include Modals if needed -->
+  <script src="explore.js"></script>
+</body>
+</html>

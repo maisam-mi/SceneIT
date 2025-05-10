@@ -74,6 +74,39 @@ app.get('/genres', async (req, res) => {
   }
 });
 
+
+// Added extra for extra details
+// Fetch movie credits (cast and crew) 
+app.get('/movies/credits/:movieId', async (req, res) => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${req.params.movieId}/credits`, 
+      options
+    );
+    const credits = await response.json();
+    res.send(credits);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Error fetching credits');
+  }
+});
+
+// Fetch movie videos (trailers, teasers)
+app.get('/movies/videos/:movieId', async (req, res) => {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${req.params.movieId}/videos`, 
+      options
+    );
+    const videos = await response.json();
+    res.send(videos);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Error fetching videos');
+  }
+});
+
+
 app.listen(3100);
 
 console.log('Server now listening on http://localhost:3100/');
