@@ -2,11 +2,9 @@ const movieId = new URLSearchParams(window.location.search).get('id');
 const detailsEl = document.getElementById('movieDetails');
 
 async function fetchData() {
-    const [details, credits, videos, keywords] = await Promise.all([
+    const [movieDetails] = await Promise.all([
         fetch(`/movies/details/${movieId}`).then(res => res.json()),
-        fetch(`/movies/credits/${movieId}`).then(res => res.json()),
-        fetch(`/movies/videos/${movieId}`).then(res => res.json()),
-        fetch(`/movies/keywords/${movieId}`).then(res => res.json())
+
     ]);
 
     const director = credits.crew.find(p => p.job === 'Director');
