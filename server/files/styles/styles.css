@@ -195,7 +195,11 @@ a {
 /* Empfehlungen */
 
 .recommendations {
-    padding: 2rem;
+    max-width: 1000px;
+    /* gleiche Breite wie der rote Kasten */
+    margin: 2rem auto;
+    /* zentriert auf der Seite */
+    padding: 1rem;
 }
 
 .genre {
@@ -553,4 +557,103 @@ deta .movie-header img {
     font-size: 0.9rem;
     border: 2px solid #fff;
     /* Weiße Umrandung */
+}
+
+.top-picks-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+    scroll-behavior: smooth;
+}
+
+.top-picks-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.top-picks-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.top-picks-section {
+    max-width: 1000px;
+    /* Passe ggf. an die rote Box an */
+    margin: 0 auto;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.movie-card {
+    flex: 0 0 auto;
+    width: 150px;
+    background-color: #111;
+    border-radius: 1rem;
+    overflow: hidden;
+    color: white;
+    position: relative;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    margin-right: 10px;
+    transition: transform 0.2s;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img {
+    width: 100%;
+    display: block;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.movie-card-info {
+    padding: 0.7rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.movie-card h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-card .genres {
+    font-size: 0.75rem;
+    color: #ccc;
+}
+
+.movie-card .rating {
+    font-size: 0.85rem;
+    font-weight: bold;
+    float: right;
+    color: #f0c040;
+}
+
+.details-button {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background: linear-gradient(135deg, #e50914, #b81d24);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 999px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.details-button:hover {
+    background: linear-gradient(135deg, #f40612, #b81d24);
+    transform: scale(1.05);
 }
