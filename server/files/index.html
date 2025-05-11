@@ -6,12 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SceneIt</title>
     <link rel="stylesheet" href="/styles/styles.css" />
+    <style>
+        .popular-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .toggle-switch {
+            display: flex;
+            background-color: #fff;
+            border-radius: 999px;
+            padding: 2px;
+        }
+        
+        .toggle-btn {
+            border: none;
+            background: transparent;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            color: #333;
+        }
+        
+        .toggle-btn.active {
+            background-color: #4b2e28;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
+
+    <div class="filmstrip-side left"></div>
+    <div class="filmstrip-side right"></div>
+
+
     <header class="navbar">
         <div class="logo" onclick="window.location.href='index.html'">
-            <img src="/photos/logo.png" alt="Logo" class="logo-image" /> SceneIt
+            <img src="/photos/logo.png" alt="Logo" class="logo-image" /> SceneIT
         </div>
 
         <!-- Suchleiste -->
@@ -23,11 +61,9 @@
         </div>
 
         <nav class="nav-buttons">
-            <!--<a href="explore.html" class="btn-primary">Explore</a>-->
             <button class="btn-primary" onclick="openModal('loginModal')">Log In</button>
         </nav>
     </header>
-
 
     <section class="hero">
         <div class="hero-content">
@@ -42,12 +78,20 @@
     </section>
 
     <div class="top-picks-section">
-        <h2>Popular</h2>
-        <div class="top-picks-scroll" id="topPicksScroll">
-
+        <div class="popular-header">
+            <h2>Popular</h2>
+            <div class="toggle-switch">
+                <button id="showMovies" class="toggle-btn active">Movie</button>
+                <button id="showSeries" class="toggle-btn">TV</button>
+            </div>
         </div>
+        <div class="top-picks-scroll" id="topPicksScroll"></div>
     </div>
 
+    <section>
+        <h2 class="top-picks-section">Popular actors</h2>
+        <div id="actors" class="scroll-container"></div>
+    </section>
 
     <footer class="footer">
         <p>&copy; 2025 SceneIt — All rights reserved.</p>

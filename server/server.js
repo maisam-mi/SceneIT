@@ -32,14 +32,14 @@ app.get('/movies/highlight', async(req, res) => {
 
 // it responses an array of currently highlighted tv series. 
 app.get('/tvSeries/highlight', async(req, res) => {
-  try {
-      const response = await fetch('https://api.themoviedb.org/3/tv/popular', options);
-      const tvSeries = (await response.json()).results;
-      res.send(tvSeries);
-  } catch (err) {
-      console.log(err);
-      res.status(500).send('Error fetching tv series');
-  }
+    try {
+        const response = await fetch('https://api.themoviedb.org/3/tv/popular', options);
+        const tvSeries = (await response.json()).results;
+        res.send(tvSeries);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Error fetching tv series');
+    }
 });
 
 // it responses an object for the details of a movie.
@@ -47,33 +47,33 @@ app.get('/tvSeries/highlight', async(req, res) => {
 //      movieId => the id of the movie.
 app.get('/movies/details/:movieId', async(req, res) => {
     try {
-      let movie;
-      // basic details
-      let response = await fetch(
-        `https://api.themoviedb.org/3/movie/${req.params.movieId}`,
-        options,
-      );
-      movie = await response.json();
-      // "cast and crew" details
-      response = await fetch(
-        `https://api.themoviedb.org/3/movie/${req.params.movieId}/credits`,
-        options,
-      );
-      movie.cast = (await response.json()).cast;
-      // "trailers and teaser" details
-      response = await fetch(
-        `https://api.themoviedb.org/3/movie/${req.params.movieId}/videos`,
-        options,
-      );
-      movie.trailers = (await response.json()).results;
-      // keywords details
-      response = await fetch(
-        `https://api.themoviedb.org/3/movie/${req.params.movieId}/keywords`,
-        options,
-      );
-      movie.keywords = (await response.json()).keywords;
+        let movie;
+        // basic details  
+        let response = await fetch(
+            `https://api.themoviedb.org/3/movie/${req.params.movieId}`,
+            options,
+        );
+        movie = await response.json();
+        // "cast and crew" details
+        response = await fetch(
+            `https://api.themoviedb.org/3/movie/${req.params.movieId}/credits`,
+            options,
+        );
+        movie.cast = (await response.json()).cast;
+        // "trailers and teaser" details
+        response = await fetch(
+            `https://api.themoviedb.org/3/movie/${req.params.movieId}/videos`,
+            options,
+        );
+        movie.trailers = (await response.json()).results;
+        // keywords details
+        response = await fetch(
+            `https://api.themoviedb.org/3/movie/${req.params.movieId}/keywords`,
+            options,
+        );
+        movie.keywords = (await response.json()).keywords;
 
-      res.send(movie);
+        res.send(movie);
     } catch (err) {
         console.log(err);
         res.status(500).send('Error fetching details of a movie');
@@ -84,35 +84,35 @@ app.get('/movies/details/:movieId', async(req, res) => {
 // paramters: 
 //      tvSerieId => the id of the tv serie.
 app.get('/tvSeries/details/:tvSerieId', async(req, res) => {
-  try {
-    let tvSerie;
-    // basic details
-    let response = await fetch(`https://api.themoviedb.org/3/tv/${req.params.tvSerieId}`, options);
-    tvSerie = await response.json();
-    // "cast and crew" details
-    response = await fetch(
-      `https://api.themoviedb.org/3/tv/${req.params.tvSerieId}/credits`,
-      options,
-    );
-    tvSerie.cast = (await response.json()).cast;
-    // "trailers and teaser" details
-    response = await fetch(
-      `https://api.themoviedb.org/3/tv/${req.params.tvSerieId}/videos`,
-      options,
-    );
-    tvSerie.trailers = (await response.json()).results;
-    // keywords details
-    response = await fetch(
-      `https://api.themoviedb.org/3/tv/${req.params.tvSerieId}/keywords`,
-      options,
-    );
-    tvSerie.keywords = (await response.json()).keywords;
+    try {
+        let tvSerie;
+        // basic details
+        let response = await fetch(`https://api.themoviedb.org/3/tv/${req.params.tvSerieId}`, options);
+        tvSerie = await response.json();
+        // "cast and crew" details
+        response = await fetch(
+            `https://api.themoviedb.org/3/tv/${req.params.tvSerieId}/credits`,
+            options,
+        );
+        tvSerie.cast = (await response.json()).cast;
+        // "trailers and teaser" details
+        response = await fetch(
+            `https://api.themoviedb.org/3/tv/${req.params.tvSerieId}/videos`,
+            options,
+        );
+        tvSerie.trailers = (await response.json()).results;
+        // keywords details
+        response = await fetch(
+            `https://api.themoviedb.org/3/tv/${req.params.tvSerieId}/keywords`,
+            options,
+        );
+        tvSerie.keywords = (await response.json()).keywords;
 
-    res.send(tvSerie);
-  } catch (err) {
-      console.log(err);
-      res.status(500).send('Error fetching details of a tv serie');
-  }
+        res.send(tvSerie);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Error fetching details of a tv serie');
+    }
 });
 
 // it responses an array of movies as result of searching through genres.
@@ -146,14 +146,14 @@ app.get('/genres', async(req, res) => {
 
 // it responses an array of currently popular actors. 
 app.get('/actors', async(req, res) => {
-  try {
-      const response = await fetch(`https://api.themoviedb.org/3/person/popular`, options);
-      const actors = (await response.json()).results;
-      res.send(actors);
-  } catch (err) {
-      console.log(err);
-      res.status(500).send('Error fetching actors');
-  }
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/person/popular`, options);
+        const actors = (await response.json()).results;
+        res.send(actors);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Error fetching actors');
+    }
 });
 
 app.listen(3100);

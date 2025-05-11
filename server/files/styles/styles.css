@@ -15,8 +15,8 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background-color: var(--bg-light);
     color: var(--text-dark);
+    background: linear-gradient(to bottom, #3e1f16, #a56a4e);
 }
 
 a {
@@ -30,10 +30,11 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--primary-color);
+    background: #3e1f16;
     color: white;
     padding: 1rem 2rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
 }
 
 .logo {
@@ -117,6 +118,7 @@ a {
 .btn-primary {
     margin-right: 400px;
     margin-top: 1px;
+    background-color: #3e1f16;
     /* Verschiebt den Button ganz nach rechts */
 }
 
@@ -164,7 +166,7 @@ a {
     margin: 2rem auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to left, #bd091b, #e7955e);
+    background: linear-gradient(to left, #7e030f, #ee0e0e);
 }
 
 .hero-content h1 {
@@ -433,6 +435,7 @@ deta .movie-header img {
     color: white;
     font-size: 0.9rem;
     margin-top: 2rem;
+    background-color: transparent;
 }
 
 
@@ -582,6 +585,7 @@ deta .movie-header img {
     margin: 0 auto;
     padding: 1rem;
     overflow: hidden;
+    color: white;
 }
 
 .movie-card {
@@ -656,4 +660,124 @@ deta .movie-header img {
 .details-button:hover {
     background: linear-gradient(135deg, #f40612, #b81d24);
     transform: scale(1.05);
+}
+
+#actors {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.actor-card {
+    flex: 0 0 auto;
+    width: 150px;
+    cursor: pointer;
+    text-align: center;
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.actor-card:hover {
+    transform: scale(1.05);
+}
+
+.actor-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.scroll-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    /* Ermöglicht horizontales Scrollen */
+    white-space: nowrap;
+    /* Verhindert Zeilenumbruch */
+    -webkit-overflow-scrolling: touch;
+    /* Für bessere Performance auf mobilen Geräten */
+    scrollbar-width: thin;
+    /* Für Firefox: dünnere Scrollbar */
+    scrollbar-color: #ccc transparent;
+    /* Für Firefox: Farbe der Scrollbar */
+}
+
+.switch-btn {
+    padding: 10px 16px;
+    margin-right: 8px;
+    cursor: pointer;
+    border: none;
+    background-color: #eee;
+    border-radius: 6px;
+}
+
+.switch-btn.active {
+    background-color: #333;
+    color: white;
+}
+
+.popular-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
+}
+
+.toggle-switch {
+    display: flex;
+    background-color: #fff;
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+}
+
+.toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    color: #333;
+}
+
+.toggle-btn.active {
+    background-color: #4b2e28;
+    /* deine Hintergrundfarbe oder angepasst */
+    color: white;
+}
+
+.filmstrip-side {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    /* ggf. anpassen */
+    background-image: url('/photos/streifen.png');
+    /* oder dein Pfad */
+    background-repeat: repeat-y;
+    background-size: contain;
+    z-index: 0;
+    /* unter Inhalt, aber über dem Hintergrund */
+    opacity: 1;
+    /* ggf. leicht reduzieren bei Bedarf */
+}
+
+.filmstrip-side.left {
+    margin-left: 200px;
+}
+
+.filmstrip-side.right {
+    right: 200px;
+    left: auto;
 }
