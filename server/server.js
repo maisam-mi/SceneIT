@@ -18,7 +18,7 @@ app.get('/hello', (req, res) => {
     res.send('Hello BugBusters!');
 });
 
-// it responses an array of right now highlighted movies. 
+// it responses an array of currently highlighted movies. 
 app.get('/movies/highlight', async(req, res) => {
     try {
         const response = await fetch('https://api.themoviedb.org/3/movie/popular', options);
@@ -30,14 +30,50 @@ app.get('/movies/highlight', async(req, res) => {
     }
 });
 
+// it responses an array of currently highlighted tv series. 
+app.get('/tvSeries/highlight', async(req, res) => {
+  try {
+      const response = await fetch('https://api.themoviedb.org/3/tv/popular', options);
+      const tvSeries = (await response.json()).results;
+      res.send(tvSeries);
+  } catch (err) {
+      console.log(err);
+      res.status(500).send('Error fetching tv series');
+  }
+});
+
 // it responses an object for the details of a movie.
 // paramters: 
 //      movieId => the id of the movie.
 app.get('/movies/details/:movieId', async(req, res) => {
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${req.params.movieId}`, options);
-        const movie = await response.json();
-        res.send(movie);
+      let movie;
+      // basic details
+      let response = await fetch(
+        `https://api.themoviedb.org/3/movie/${req.params.movieId}`,
+        options,
+      );
+      movie = await response.json();
+      // "cast and crew" details
+      response = await fetch(
+        `https://api.themoviedb.org/3/movie/${req.params.movieId}/credits`,
+        options,
+      );
+      movie.cast = (await response.json()).cast;
+      // "trailers and teaser" details
+      response = await fetch(
+        `https://api.themoviedb.org/3/movie/${req.params.movieId}/videos`,
+        options,
+      );
+      movie.trailers = (await response.json()).results;
+      // keywords details
+      response = await fetch(
+        `https://api.themoviedb.org/3/movie/${req.params.movieId}/keywords`,
+        options,
+      );
+      movie.keywords = (await response.json()).keywords;
+
+      res.send(movie);
     } catch (err) {
         console.log(err);
         res.status(500).send('Error fetching details of a movie');
@@ -108,16 +144,7 @@ app.get('/movies/videos/:movieId', async(req, res) => {
 // Fetch movie keywords
 app.get('/movies/keywords/:movieId', async(req, res) => {
     try {
-        const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${req.params.movieId}/keywords`, {
-                method: 'GET',
-                headers: {
-                    accept: 'application/json',
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmFkNDlhMGQ1ZmFjMjg1ODc5MGUxYWUzMTQzYzY2ZSIsIm5iZiI6MS43NDIyMzYxMDM2NTc5OTk4ZSs5LCJzdWIiOiI2N2Q4NjljNzAyZTVhYWM0NDMwMTE0YjkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.utCg0oq0jdlR6AjmPNyIqcdclwsIfVwmlMUbPZ867gA',
-
-                },
-            }
-        );
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${req.params.movieId}/keywords`, options);
         const keywords = await response.json();
         res.send(keywords); // Gibt die Keywords als JSON zurück
     } catch (err) {
