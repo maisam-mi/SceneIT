@@ -11,26 +11,32 @@
 <body>
     <header class="navbar">
         <div class="logo" onclick="window.location.href='index.html'">
-            SceneIt
+            <img src="/photos/logo.png" alt="Logo" class="logo-image" /> SceneIt
+        </div>
+
+        <!-- Suchleiste -->
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input class="search-input" type="text" placeholder="Action, Drama" />
+                <img src="/photos/lupe.png" alt="Lupe" class="search-img" />
+            </div>
         </div>
 
         <nav class="nav-buttons">
-            <a href="explore.html" class="btn-primary">Explore</a>
-            <button class="btn-primary" onclick="openModal('loginModal')">
-                Log In
-            </button>
-            <button="signup.html" class="btn-outline" onclick="openModal('signupModal')">
-                Sign Up
-            </button>
+            <!--<a href="explore.html" class="btn-primary">Explore</a>-->
+            <button class="btn-primary" onclick="openModal('loginModal')">Log In</button>
         </nav>
     </header>
 
+
     <section class="hero">
         <div class="hero-content">
-            <h1>Stop scrolling,<br /><span>start watching</span></h1>
-            <p>Personalized recommendations for Movies and TV-Shows</p>
+            <h1>What is your favorite movie?</h1>
+            <p>1. Create an account</p>
+            <p>2. Answer some questions.</p>
+            <p>3. Finally we offer you the movies which you would like.</p>
             <button class="quizButton" onclick="window.location.href='quiz.html'">
-                Take QUIZ
+                Sign up
             </button>
         </div>
     </section>
@@ -38,10 +44,10 @@
     <main class="recommendations">
         <h2>Top Picks</h2>
         <div class="card-grid" id="recommendations">
-          <!-- movie cards will go here -->
+            <!-- movie cards will go here -->
         </div>
-      </main>
-      
+    </main>
+
 
     <footer class="footer">
         <p>&copy; 2025 SceneIt — All rights reserved.</p>

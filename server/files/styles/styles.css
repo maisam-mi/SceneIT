@@ -37,9 +37,76 @@ a {
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    cursor: pointer;
+    margin-left: 380px;
+    margin-top: -5px;
+    display: flex;
+    /* Flexbox aktivieren */
+    align-items: center;
+    margin-right: 100px;
+    /* Vertikale Zentrierung der Elemente */
+}
+
+.logo-image {
+    height: 50px;
+    width: 90px;
+    margin-right: 20px;
+}
+
+.search-container {
+    flex-grow: 0.7;
+    /* Suchleiste nimmt den verfügbaren Raum ein */
+    margin-right: 150px;
+    /* Abstand zwischen der Suchleiste und den anderen Elementen */
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-img {
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #888;
+    pointer-events: none;
+    /* damit Klicks durchgehen */
+}
+
+
+/* Suchleiste */
+
+.search-input {
+    width: 100%;
+    /* Die Suchleiste füllt den verfügbaren Raum */
+    padding: 8px;
+    /* Innenabstand für das Eingabefeld */
+    border: 1px solid #ccc;
+    /* Rand der Suchleiste */
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    font-size: 14px;
+    /* Schriftgröße */
+}
+
+
+/* Navigation Buttons */
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
 }
 
 
@@ -47,9 +114,14 @@ a {
 
 .nav-buttons a,
 .btn-outline,
-.btn-primary,
+.btn-primary {
+    margin-right: 400px;
+    margin-top: 1px;
+    /* Verschiebt den Button ganz nach rechts */
+}
+
 .quizButton {
-    margin-left: 1rem;
+    margin-left: 80px;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     font-weight: bold;
@@ -84,15 +156,20 @@ a {
 /* Hero-Bereich */
 
 .hero {
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    text-align: center;
-    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
+    padding: 2rem;
+    border-radius: 20px;
+    max-width: 1000px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to left, #bd091b, #e7955e);
 }
 
 .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 24px;
+    margin-left: 80px;
 }
 
 .hero-content span {
@@ -101,8 +178,9 @@ a {
 }
 
 .hero-content p {
-    font-size: 1.2rem;
+    font-size: 14px;
     margin-bottom: 2rem;
+    margin-left: 80px;
 }
 
 .hero-content input {
