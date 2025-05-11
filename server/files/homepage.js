@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", async() => {
         `).join('');
 
         // Alle Cards auf einmal ins DOM einfügen
+        //<p><strong>Cast:</strong> ${cast}</p> für später  
         container.innerHTML = movieCards;
 
     } catch (err) {

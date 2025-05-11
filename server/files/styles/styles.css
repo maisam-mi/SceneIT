@@ -1,28 +1,39 @@
+/* Farben und Theme */
+
 :root {
-    --primary-color: #7b5cff;
-    --bg-dark: #111;
-    --bg-light: #f4f4f4;
-    --text-light: #fff;
+    --primary-color: #d76d77;
+    --secondary-color: #ffaf7b;
+    --bg-light: #fff6f6;
+    --bg-dark: #ffffff;
     --text-dark: #222;
+    --text-light: #fff;
 }
+
+
+/* Basislayout */
 
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background-color: #121212;
-    color: white;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
 }
 
 a {
     text-decoration: none;
 }
 
+
+/* Navigation */
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #1c1c1c;
+    background: var(--primary-color);
+    color: white;
     padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -31,21 +42,26 @@ a {
     cursor: pointer;
 }
 
-.nav-buttons a {
+
+/* Buttons */
+
+.nav-buttons a,
+.btn-outline,
+.btn-primary,
+.quizButton {
     margin-left: 1rem;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 6px;
     font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
 .btn-outline {
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
-}
-
-.btn-primary {
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
+    background: transparent;
 }
 
 .btn-outline:hover {
@@ -53,23 +69,25 @@ a {
     color: white;
 }
 
+.btn-primary,
 .quizButton {
     background: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: large;
-    padding: 15px;
 }
 
 .quizButton:hover {
-    background-color: rgb(27, 160, 27);
+    background-color: var(--secondary-color);
 }
 
+
+/* Hero-Bereich */
+
 .hero {
-    background: linear-gradient(to right, #1c1c1c, #2e2e2e);
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     text-align: center;
     padding: 4rem 2rem;
+    color: white;
 }
 
 .hero-content h1 {
@@ -78,7 +96,8 @@ a {
 }
 
 .hero-content span {
-    color: var(--primary-color);
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .hero-content p {
@@ -94,9 +113,32 @@ a {
     width: 250px;
 }
 
+
+/* Empfehlungen */
+
 .recommendations {
     padding: 2rem;
 }
+
+.genre {
+    display: inline-block;
+    background-color: #808080;
+    /* Dunkleres Grau */
+    color: #fff;
+    /* Weiße Schriftfarbe */
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    margin-right: -0.8rem;
+    margin-left: 22px;
+    margin-bottom: 0.5rem;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    border: 2px solid #fff;
+    /* Weiße Umrandung */
+}
+
+
+/* Movie Cards */
 
 .card-grid {
     display: grid;
@@ -106,26 +148,213 @@ a {
 }
 
 .movie-card {
-    background: #1f1f1f;
+    background: var(--bg-dark);
     border-radius: 8px;
     padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
+    color: var(--text-dark);
 }
 
 .movie-card:hover {
     transform: scale(1.03);
 }
 
-.movie-card h3 {
-    margin-top: 0;
+.movie-card img {
+    width: 100%;
+    border-radius: 6px;
 }
+
+.movie-buttons {
+    display: flex;
+    gap: 10px;
+    /* Abstand zwischen den Buttons */
+    align-items: center;
+    margin-top: 25px;
+}
+
+.trailer-button {
+    display: inline-block;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 0.4rem 0.8rem;
+    margin: 0.4rem 0 0 0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 25px;
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 120px;
+    /* Breite des Buttons */
+    height: 50px;
+    /* Höhe des Buttons */
+    margin-right: 10px;
+}
+
+.trailer-button:hover {
+    background-color: #eee;
+}
+
+.btn-like {
+    width: 50px;
+    /* Breite des Buttons */
+    height: 50px;
+    /* Höhe des Buttons */
+    background-color: rgb(255, 255, 255);
+    /* Schwarzer Hintergrund */
+    background-image: url('/photos/heart.png');
+    /* Bild für den Like-Button */
+    background-size: contain;
+    /* Bild bleibt innerhalb des Buttons */
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 10px;
+    border: 1px solid;
+    /* Weiße Umrandung */
+    border-radius: 5px;
+    /* Abgerundete Ecken (optional) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /* Padding (Abstand innen) erhöhen */
+    cursor: pointer;
+    /* Zeigt an, dass der Button klickbar ist */
+    transition: all 0.3s ease;
+    /* Übergangseffekte für Interaktionen */
+    background-size: 40px;
+}
+
+.btn-like:hover {
+    background-color: #eee;
+}
+
+.btn-save:hover {
+    background-color: #eee;
+}
+
+.btn-save {
+    width: 50px;
+    /* Breite des Buttons */
+    height: 50px;
+    /* Höhe des Buttons */
+    background-color: rgb(255, 255, 255);
+    /* Schwarzer Hintergrund */
+    background-image: url('/photos/save.png');
+    /* Bild für den Like-Button */
+    background-size: contain;
+    /* Bild bleibt innerhalb des Buttons */
+    background-repeat: no-repeat;
+    border: 1px solid;
+    background-position: center;
+    /* Weiße Umrandung */
+    border-radius: 5px;
+    /* Abgerundete Ecken (optional) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /* Padding (Abstand innen) erhöhen */
+    cursor: pointer;
+    /* Zeigt an, dass der Button klickbar ist */
+    transition: all 0.3s ease;
+    /* Übergangseffekte für Interaktionen */
+    background-size: 40px;
+    ;
+}
+
+
+/* Detailansicht */
+
+.movie-details-container {
+    padding: 20px;
+}
+
+.movie-poster {
+    margin-top: 30px;
+    width: 250px;
+    /* Oder eine andere feste Größe */
+    height: auto;
+    /* Erhält das Seitenverhältnis */
+    border-radius: 15px;
+}
+
+.movie-header {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    margin-left: 450px;
+}
+
+deta .movie-header img {
+    border-radius: 8px;
+    max-width: 300px;
+}
+
+.movie-info h1 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    margin-left: 25px;
+    font-size: 1.4rem;
+}
+
+.movie-info p {
+    margin: 0.5rem 0;
+}
+
+.overview-lalala {
+    margin-top: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #000000;
+    margin-left: 450px;
+    max-width: 80ch;
+}
+
+
+/* Details unter dem Titel (Release Date, Runtime, Rating) */
+
+.movie-details {
+    display: flex;
+    justify-content: 5000px;
+    /* Setzt den Abstand zwischen den Elementen */
+    gap: 20px;
+    /* Kleiner Abstand zwischen den Elementen */
+    margin: 0;
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+.movie-details p {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--text-dark);
+    white-space: nowrap;
+    /* Verhindert Zeilenumbrüche */
+}
+
+
+/* Footer */
 
 .footer {
     text-align: center;
     padding: 1rem;
-    background: #1c1c1c;
+    background: var(--primary-color);
+    color: white;
     font-size: 0.9rem;
+    margin-top: 2rem;
 }
+
+
+/* Modal (Trailer) */
 
 .modal {
     display: none;
@@ -141,157 +370,109 @@ a {
 }
 
 .modal-content {
-    background: #222;
+    background: var(--bg-dark);
+    color: var(--text-dark);
     padding: 2rem;
     border-radius: 8px;
-    width: 300px;
-    color: white;
+    width: 90%;
+    max-width: 800px;
     position: relative;
-}
-
-.modal-content input {
-    display: block;
-    width: 100%;
-    margin: 1rem 0;
-    padding: 0.7rem;
-    border: none;
-    border-radius: 4px;
 }
 
 .modal-content .close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.7rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.movie-card {
-    background: #1c1c1c;
-    color: white;
-    border-radius: 8px;
-    padding: 1rem;
-    text-align: center;
-    transition: transform 0.2s ease;
-}
-
-.movie-card img {
-    width: 100%;
-    border-radius: 6px;
-}
-
-.movie-card:hover {
-    transform: scale(1.03);
-}
-
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1rem;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    position: relative;
-}
-
-.close {
     position: absolute;
     top: 10px;
     right: 15px;
     font-size: 24px;
     cursor: pointer;
+    color: #888;
 }
 
-.movie-details-container {
-    padding: 20px;
+.movie-actors {
+    margin-top: 20px;
+    margin-left: 450px;
 }
 
-.movie-header {
+.movie-actors h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.actors-list {
     display: flex;
+    /* Schauspieler nebeneinander anordnen */
     gap: 20px;
+    /* Abstand zwischen den Schauspielern */
+    padding-bottom: 10px;
+    overflow-x: auto;
+    /* Ermöglicht horizontales Scrollen */
+    white-space: nowrap;
+    /* Verhindert Zeilenumbruch */
+    -webkit-overflow-scrolling: touch;
+    /* Für bessere Performance auf mobilen Geräten */
+    scrollbar-width: thin;
+    /* Für Firefox: dünnere Scrollbar */
+    scrollbar-color: #ccc transparent;
+    /* Für Firefox: Farbe der Scrollbar */
 }
 
-.movie-info h1 {
-    margin-top: 0;
-}
-
-.quiz-container {
-    padding: 30px;
-    max-width: 800px;
-    margin: auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.genre-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.genre-options label {
-    background-color: #eee;
-    border: 1px solid #ccc;
-    padding: 10px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.genre-options input[type="checkbox"] {
-    display: none;
-}
-
-.genre-options input[type="checkbox"]:checked+span {
-    background-color: #5a67d8;
-    color: white;
-    border-color: #5a67d8;
-}
-
-#movie-error-section .error-message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
+.actor {
     text-align: center;
+    max-width: 150px;
+    /* Bildgröße */
+    flex-shrink: 0;
+    /* Verhindert das Schrumpfen der Schauspieler */
 }
 
-#movie-error-section .error-message p {
-    color: red;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+.actor-img {
+    width: 100%;
+    /* Bild nimmt die volle Breite des Containers ein */
+    height: auto;
+    /* Verhält sich proportional */
+    border: 2px solid #ccc;
+    /* Weiße Umrandung */
+    border-radius: 15px;
+    object-fit: cover;
 }
 
-#movie-error-section .retry-button {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
+.actor p {
+    margin-top: 8px;
     font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-#movie-error-section .retry-button:hover {
-    background-color: #ff1a1a;
+
+/* Scrollbar für Webkit-basierte Browser (Chrome, Safari, Edge) */
+
+.actors-list::-webkit-scrollbar {
+    height: 8px;
+    /* Höhe der horizontalen Scrollbar */
+}
+
+.actors-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    /* Farbe des Scrollbar-Thumbnails */
+    border-radius: 10px;
+    /* Abgerundete Ecken für den Scrollbar */
+}
+
+.actors-list::-webkit-scrollbar-track {
+    background-color: transparent;
+    /* Hintergrund der Scrollbar */
+}
+
+.keywords {
+    display: inline-block;
+    background-color: #808080;
+    /* Dunkleres Grau */
+    color: #fff;
+    /* Weiße Schriftfarbe */
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    margin-right: -0.8rem;
+    margin-left: 22px;
+    margin-bottom: 0.5rem;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    border: 2px solid #fff;
+    /* Weiße Umrandung */
 }
