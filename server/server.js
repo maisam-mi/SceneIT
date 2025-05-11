@@ -80,6 +80,41 @@ app.get('/movies/details/:movieId', async(req, res) => {
     }
 });
 
+// it responses an object for the details of a tv serie.
+// paramters: 
+//      tvSerieId => the id of the tv serie.
+app.get('/tvSeries/details/:tvSerieId', async(req, res) => {
+  try {
+    let tvSerie;
+    // basic details
+    let response = await fetch(`https://api.themoviedb.org/3/tv/${req.params.tvSerieId}`, options);
+    tvSerie = await response.json();
+    // "cast and crew" details
+    response = await fetch(
+      `https://api.themoviedb.org/3/tv/${req.params.tvSerieId}/credits`,
+      options,
+    );
+    tvSerie.cast = (await response.json()).cast;
+    // "trailers and teaser" details
+    response = await fetch(
+      `https://api.themoviedb.org/3/tv/${req.params.tvSerieId}/videos`,
+      options,
+    );
+    tvSerie.trailers = (await response.json()).results;
+    // keywords details
+    response = await fetch(
+      `https://api.themoviedb.org/3/tv/${req.params.tvSerieId}/keywords`,
+      options,
+    );
+    tvSerie.keywords = (await response.json()).keywords;
+
+    res.send(tvSerie);
+  } catch (err) {
+      console.log(err);
+      res.status(500).send('Error fetching details of a tv serie');
+  }
+});
+
 // it responses an array of movies as result of searching through genres.
 // query: 
 //      genreId => id of genre. if theres more genres, give the ids seperated with comma. e.g. : 12,28
@@ -109,50 +144,17 @@ app.get('/genres', async(req, res) => {
     }
 });
 
-
-// Added extra for extra details
-// Fetch movie credits (cast and crew) 
-app.get('/movies/credits/:movieId', async(req, res) => {
-    try {
-        const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${req.params.movieId}/credits`,
-            options
-        );
-        const credits = await response.json();
-        res.send(credits);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('Error fetching credits');
-    }
+// it responses an array of currently popular actors. 
+app.get('/actors', async(req, res) => {
+  try {
+      const response = await fetch(`https://api.themoviedb.org/3/person/popular`, options);
+      const actors = (await response.json()).results;
+      res.send(actors);
+  } catch (err) {
+      console.log(err);
+      res.status(500).send('Error fetching actors');
+  }
 });
-
-// Fetch movie videos (trailers, teasers)
-app.get('/movies/videos/:movieId', async(req, res) => {
-    try {
-        const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${req.params.movieId}/videos`,
-            options
-        );
-        const videos = await response.json();
-        res.send(videos);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('Error fetching videos');
-    }
-});
-
-// Fetch movie keywords
-app.get('/movies/keywords/:movieId', async(req, res) => {
-    try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${req.params.movieId}/keywords`, options);
-        const keywords = await response.json();
-        res.send(keywords); // Gibt die Keywords als JSON zurück
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('Error fetching keywords');
-    }
-});
-
 
 app.listen(3100);
 
