@@ -14,9 +14,9 @@
 
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Mukta', sans-serif;
     color: var(--text-dark);
-    background: linear-gradient(to bottom, #3e1f16, #a56a4e);
+    background: linear-gradient(to bottom, #341812, #824639);
 }
 
 a {
@@ -118,7 +118,7 @@ a {
 .btn-primary {
     margin-right: 400px;
     margin-top: 1px;
-    background-color: #3e1f16;
+    824639
     /* Verschiebt den Button ganz nach rechts */
 }
 
@@ -143,11 +143,18 @@ a {
     color: white;
 }
 
-.btn-primary,
-.quizButton {
+.btn-primary {
     background: var(--primary-color);
     color: white;
     border: none;
+    background-color: #341812;
+}
+
+.quizButton {
+    background: var(--primary-color);
+    color: black;
+    border: none;
+    background-color: white;
 }
 
 .quizButton:hover {
@@ -172,6 +179,7 @@ a {
 .hero-content h1 {
     font-size: 24px;
     margin-left: 80px;
+    font-weight: normal;
 }
 
 .hero-content span {
@@ -206,7 +214,7 @@ a {
 
 .genre {
     display: inline-block;
-    background-color: #808080;
+    background-color: #464343;
     /* Dunkleres Grau */
     color: #fff;
     /* Weiße Schriftfarbe */
@@ -239,6 +247,7 @@ a {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
     color: var(--text-dark);
+    margin-top: -20px;
 }
 
 .movie-card:hover {
@@ -360,7 +369,7 @@ a {
 }
 
 .movie-poster {
-    margin-top: 30px;
+    margin-top: 1px;
     width: 250px;
     /* Oder eine andere feste Größe */
     height: auto;
@@ -382,10 +391,11 @@ deta .movie-header img {
 }
 
 .movie-info h1 {
-    margin-top: 35px;
+    margin-top: 8px;
     margin-bottom: 10px;
     margin-left: 25px;
     font-size: 1.4rem;
+    color: white;
 }
 
 .movie-info p {
@@ -412,7 +422,7 @@ deta .movie-header img {
     /* Kleiner Abstand zwischen den Elementen */
     margin: 0;
     margin-left: 25px;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 .movie-details p {
@@ -422,6 +432,7 @@ deta .movie-header img {
     font-weight: normal;
     color: var(--text-dark);
     white-space: nowrap;
+    margin-bottom: 10px;
     /* Verhindert Zeilenumbrüche */
 }
 
@@ -474,13 +485,17 @@ deta .movie-header img {
 }
 
 .movie-actors {
+    max-width: 930px;
     margin-top: 20px;
     margin-left: 450px;
+    padding-top: 0rem;
+    padding-bottom: 2rem;
 }
 
 .movie-actors h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
+    padding-bottom: 0rem;
 }
 
 .actors-list {
@@ -489,6 +504,8 @@ deta .movie-header img {
     gap: 20px;
     /* Abstand zwischen den Schauspielern */
     padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 5px;
     overflow-x: auto;
     /* Ermöglicht horizontales Scrollen */
     white-space: nowrap;
@@ -514,10 +531,14 @@ deta .movie-header img {
     /* Bild nimmt die volle Breite des Containers ein */
     height: auto;
     /* Verhält sich proportional */
-    border: 2px solid #ccc;
+    /*border: 2px solid #ccc;
     /* Weiße Umrandung */
     border-radius: 15px;
     object-fit: cover;
+    height: auto;
+    border: none;
+    outline: none;
+    box-shadow: none;
 }
 
 .actor p {
@@ -545,43 +566,30 @@ deta .movie-header img {
     /* Hintergrund der Scrollbar */
 }
 
-.keywords {
-    display: inline-block;
+.keyword-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    margin-left: 25px;
+}
+
+.keyword {
     background-color: #808080;
-    /* Dunkleres Grau */
     color: #fff;
-    /* Weiße Schriftfarbe */
     padding: 0.3rem 0.6rem;
     border-radius: 12px;
-    margin-right: -0.8rem;
-    margin-left: 22px;
-    margin-bottom: 0.5rem;
-    margin-top: 10px;
     font-size: 0.9rem;
     border: 2px solid #fff;
-    /* Weiße Umrandung */
 }
 
-.top-picks-scroll {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding: 1rem 0;
-    scroll-behavior: smooth;
-}
-
-.top-picks-scroll::-webkit-scrollbar {
-    height: 8px;
-}
-
-.top-picks-scroll::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
+.key {
+    margin-left: 25px;
+    margin-bottom: 10px;
 }
 
 .top-picks-section {
     max-width: 1000px;
-    /* Passe ggf. an die rote Box an */
     margin: 0 auto;
     padding: 1rem;
     overflow: hidden;
@@ -600,6 +608,7 @@ deta .movie-header img {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     margin-right: 10px;
     transition: transform 0.2s;
+    margin-left: 5px;
 }
 
 .movie-card:hover {
@@ -678,10 +687,13 @@ deta .movie-header img {
     border-radius: 10px;
     padding: 0.5rem;
     transition: transform 0.2s ease;
+    margin-left: 5px;
+    margin-top: -20px;
 }
 
 .actor-card:hover {
     transform: scale(1.05);
+    z-index: 10;
 }
 
 .actor-card img {
@@ -730,6 +742,7 @@ deta .movie-header img {
     max-width: 1200px;
     margin: 0 auto;
     color: white;
+    margin-bottom: -20px;
 }
 
 .toggle-switch {
@@ -738,11 +751,12 @@ deta .movie-header img {
     border-radius: 999px;
     padding: 3px;
     gap: 2px;
+    margin-right: 730px
 }
 
 .toggle-btn {
     border: none;
-    background: transparent;
+    background-color: #4b2e28;
     padding: 8px 16px;
     border-radius: 999px;
     font-weight: bold;
@@ -752,9 +766,9 @@ deta .movie-header img {
 }
 
 .toggle-btn.active {
-    background-color: #4b2e28;
+    background-color: white;
     /* deine Hintergrundfarbe oder angepasst */
-    color: white;
+    color: black;
 }
 
 .filmstrip-side {
@@ -780,4 +794,75 @@ deta .movie-header img {
 .filmstrip-side.right {
     right: 200px;
     left: auto;
+}
+
+.hero-content h1 {
+    margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+    margin: 0.3rem;
+    margin-left: 80px;
+    margin-bottom: 0.7rem;
+}
+
+.actor-card {
+    position: relative;
+    width: 150px;
+    flex-shrink: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    font-family: 'Mukta', sans-serif;
+    border: none;
+    box-shadow: none;
+}
+
+.actor-card img {
+    width: 100%;
+    height: 190px;
+    /* feste Höhe setzen, nach Bedarf anpassen */
+    object-fit: cover;
+    object-position: top center;
+    /* Gesicht bleibt im Fokus */
+    display: block;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.actor-card h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    border-radius: 0 0 1rem 1rem;
+    box-sizing: border-box;
+    font-size: 15px;
+    z-index: 2;
+}
+
+.actor-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+#movieDetails {
+    background-color: #e6c763;
+    /* z.B. dunkles Grau */
+    padding: 2rem;
+    border-radius: 1rem;
+    color: rgb(104, 65, 65);
+    /* Textfarbe anpassen, wenn nötig */
 }

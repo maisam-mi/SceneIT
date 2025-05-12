@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
             const movies = await res.json();
 
-            movieContainer.innerHTML = movies.slice(0, 20).map(movie => `
+            movieContainer.innerHTML = movies.map(movie => `
                 <div class="movie-card">
                     <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="${movie.title}" />
                     <h3>${movie.title}</h3>
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
             const series = await res.json();
 
-            movieContainer.innerHTML = series.slice(0, 20).map(serie => `
+            movieContainer.innerHTML = series.map(serie => `
                 <div class="movie-card">
                     <img src="https://image.tmdb.org/t/p/w300${serie.poster_path}" alt="${serie.name}" />
                     <h3>${serie.name}</h3>
@@ -54,8 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
             const actors = await res.json();
 
-            actorContainer.innerHTML = actors.slice(0, 20).map(actor => `
-                <div class="movie-card">
+            actorContainer.innerHTML = actors.map(actor => `
+                <div class="actor-card">
                     <img src="https://image.tmdb.org/t/p/w300${actor.profile_path}" alt="${actor.name}" />
                     <h3>${actor.name}</h3>
                 </div>
