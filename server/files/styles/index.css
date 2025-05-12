@@ -1,0 +1,349 @@
+:root{
+    --primary-color: #341812;
+    --secondary-color: #BC2E0F;
+    --text-light: #EEEEEE;
+    --text-dark: #333333;
+}
+
+/* the mukta styles*/
+.mukta-extralight {
+    font-family: "Mukta", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.mukta-light {
+    font-family: "Mukta", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.mukta-regular {
+    font-family: "Mukta", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.mukta-medium {
+    font-family: "Mukta", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.mukta-semibold {
+    font-family: "Mukta", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.mukta-bold {
+    font-family: "Mukta", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.mukta-extrabold {
+    font-family: "Mukta", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+/* the mukta styles*/
+
+body{
+    background-image: url(../photos/background.png);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--text-light);
+    padding: 1rem 12rem;
+}
+
+button{
+    background-color: var(--text-light);
+    color: var(--text-dark);
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 0.7rem;
+    margin: 0rem 0.2rem 0.2rem 0.2rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #3e1f16;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+}
+
+.logo {
+    /* margin-left: 380px; */
+    /* margin-top: -5px; */
+    display: flex;
+    /* Flexbox aktivieren */
+    align-items: center;
+    /* margin-right: 100px; */
+    /* Vertikale Zentrierung der Elemente */
+}
+
+.logo-image {
+    height: 50px;
+    width: 90px;
+    margin-right: 20px;
+}
+
+.search-container {
+    width: 530px;
+    /* Suchleiste nimmt den verfügbaren Raum ein */
+    /* margin-right: 150px; */
+    /* Abstand zwischen der Suchleiste und den anderen Elementen */
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-img {
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #888;
+    pointer-events: none;
+    /* damit Klicks durchgehen */
+}
+
+
+/* Suchleiste */
+
+.search-input {
+    width: 100%;
+    /* Die Suchleiste füllt den verfügbaren Raum */
+    padding: 8px;
+    /* Innenabstand für das Eingabefeld */
+    border: 1px solid #ccc;
+    /* Rand der Suchleiste */
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    font-size: 14px;
+    /* Schriftgröße */
+}
+
+
+/* Navigation Buttons */
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-buttons button{
+    background-color: rgba(0, 0, 255, 0);
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 20px;
+    max-width: auto;
+    margin: 2rem 0rem;   
+    padding: 3rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to left, #A32408, #CD5940);
+}
+
+.hero-content{
+    margin-left: 80px;
+    font-weight: normal;
+}
+
+.scroll-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    /* Ermöglicht horizontales Scrollen */
+    white-space: nowrap;
+    /* Verhindert Zeilenumbruch */
+    -webkit-overflow-scrolling: touch;
+    /* Für bessere Performance auf mobilen Geräten */
+    scrollbar-width: thin;
+    /* Für Firefox: dünnere Scrollbar */
+    scrollbar-color: #ccc transparent;
+    /* Für Firefox: Farbe der Scrollbar */
+}
+
+.top-picks-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+    overflow: hidden;
+    color: white;
+}
+
+.switch-btn.active {
+    background-color: #333;
+    color: white;
+}
+
+.popular-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
+    margin-bottom: -20px;
+}
+
+.toggle-switch {
+    display: flex;
+    background-color: #fff;
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+    margin-right: 730px
+}
+
+.toggle-btn {
+    border: none;
+    background-color: #4b2e28;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    color: #333;
+}
+
+.toggle-btn.active {
+    background-color: white;
+    /* deine Hintergrundfarbe oder angepasst */
+    color: black;
+}
+
+.filmstrip-side {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    /* ggf. anpassen */
+    background-image: url('/photos/streifen.png');
+    /* oder dein Pfad */
+    background-repeat: repeat-y;
+    background-size: contain;
+    z-index: 0;
+    /* unter Inhalt, aber über dem Hintergrund */
+    opacity: 1;
+    /* ggf. leicht reduzieren bei Bedarf */
+}
+
+.filmstrip-side.left {
+    margin-left: 200px;
+}
+
+.filmstrip-side.right {
+    right: 200px;
+    left: auto;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.movie-card {
+    background-color: var(--text-dark);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    color: var(--text-light);
+    margin-top: -20px;
+}
+
+.movie-card:hover {
+    transform: scale(1.03);
+}
+
+.movie-card img {
+    width: 8rem;
+    border-radius: 6px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+.actor-card {
+    flex: 0 0 auto;
+    width: 150px;
+    cursor: pointer;
+    text-align: center;
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+    margin-left: 5px;
+    margin-top: -20px;
+}
+
+.actor-card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.actor-card img {
+    width: 100%;
+    border-radius: 10px;
+}

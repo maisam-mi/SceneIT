@@ -6,7 +6,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SceneIT</title>
-    <link rel="stylesheet" href="/styles/styles.css" />
+    <!-- <link rel="stylesheet" href="/styles/styles.css" /> -->
+    <link rel="stylesheet" href="/styles/index.css" />
     <style>
         .popular-header {
             display: flex;
@@ -42,15 +43,15 @@
     </style>
 </head>
 
-<body>
+<body class="mukta-regular">
 
-    <div class="filmstrip-side left"></div>
-    <div class="filmstrip-side right"></div>
+    <!-- <div class="filmstrip-side left"></div>
+    <div class="filmstrip-side right"></div> -->
 
 
     <header class="navbar">
         <div class="logo" onclick="window.location.href='index.html'">
-            <img src="/photos/logo.png" alt="Logo" class="logo-image" /> SceneIT
+            <img src="/photos/logo.png" alt="Logo" class="logo-image" /> <span class="mukta-bold" style="font-size: 1rem">SceneIT</span>
         </div>
 
         <!-- Suchleiste -->
@@ -61,9 +62,9 @@
             </div>
         </div>
 
-        <nav class="nav-buttons">
-            <button class="btn-primary" onclick="openModal('loginModal')">Log In</button>
-        </nav>
+        <div class="nav-buttons">
+            <button class="btn-primary mukta-medium" onclick="openModal('loginModal')">Log In</button>
+        </div>
     </header>
 
     <section class="hero">
@@ -74,6 +75,9 @@
             <p class="hero-content-p">3. Finally we offer you the movies which you would like.</p>
             <button class="quizButton" onclick="window.location.href='quiz.html'">
                 Sign up
+            </button>
+            <button class="quizButton" onclick="window.location.href='quiz.html'">
+                Log in
             </button>
         </div>
     </section>
