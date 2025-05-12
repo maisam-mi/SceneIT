@@ -1,0 +1,496 @@
+:root {
+    --primary-color: #341812;
+    --secondary-color: #BC2E0F;
+    --text-light: #EEEEEE;
+    --text-dark: #333333;
+}
+
+
+/* the mukta styles*/
+
+.mukta-extralight {
+    font-family: "Mukta", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.mukta-light {
+    font-family: "Mukta", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.mukta-regular {
+    font-family: "Mukta", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.mukta-medium {
+    font-family: "Mukta", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.mukta-semibold {
+    font-family: "Mukta", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.mukta-bold {
+    font-family: "Mukta", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.mukta-extrabold {
+    font-family: "Mukta", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+body {
+    background-image: url(../photos/background.png);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--text-light);
+    padding: 1rem 5vw;
+}
+
+button {
+    background-color: var(--text-light);
+    color: var(--text-dark);
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 0.7rem;
+    margin: 0rem 0.2rem 0.2rem 0.2rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding: 10px 0;
+    background-color: #a03020;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #341812;
+    z-index: 3;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.logo-image {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.search-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-color: #341812;
+    z-index: 3;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    width: 100%;
+    background-color: #a03020;
+    position: relative;
+    z-index: 3;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 30px 8px 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background-color: white;
+    color: #333;
+    z-index: 3;
+}
+
+.search-img {
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-8px);
+    font-size: 18px;
+    color: #fff;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 3;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-buttons button {
+    background-color: rgba(0, 0, 255, 0);
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 1500px;
+    position: relative;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+#actors {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.scroll-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1rem;
+    scroll-snap-type: x mandatory;
+}
+
+.actor-card {
+    flex: 0 0 auto;
+    width: 120px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.actor-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.actor-card h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 6px 4px;
+    font-size: 0.9rem;
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+.actor-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    z-index: 1;
+}
+
+.movie-header {
+    max-width: 800px;
+    margin: 30px auto;
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+    padding: 16px;
+    background-color: transparent;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 5vw;
+}
+
+.movie-actors {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.actors-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+    padding: 1rem 0;
+}
+
+
+/* Posterbild */
+
+.movie-poster {
+    width: 220px;
+    height: 330px;
+    /* feste Höhe */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
+/* Info-Bereich */
+
+.movie-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0vh;
+    /* Weniger vertikaler Platz */
+}
+
+
+/* Titel */
+
+.movie-info h1 {
+    font-size: 22px;
+    margin: 0;
+    color: var(--text-light);
+}
+
+
+/* Laufzeit, Jahr, Bewertung */
+
+.movie-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    /* Weniger Abstand zw. Infos */
+    font-size: 16px;
+    color: var(--text-light);
+    margin: 0;
+}
+
+
+/* Genres */
+
+.genre {
+    margin-right: 10px;
+}
+
+
+/* Keywords */
+
+.keywords {
+    margin-top: 4px;
+}
+
+.keyword-list {
+    gap: 6px;
+    max-height: 2.4em;
+    overflow: hidden;
+}
+
+.keyword {
+    background-color: rgb(37, 36, 36);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 13px;
+    gap: 3vw;
+    border: 2px solid white;
+}
+
+
+/* Buttons */
+
+.movie-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.movie-buttons button {
+    padding: 6px 14px;
+    font-size: 13px;
+}
+
+.trailer-button {
+    background-color: white;
+    color: black;
+}
+
+.btn-like img.icon {
+    background-color: white;
+    color: #333;
+    width: 30px;
+    height: 30px;
+}
+
+.btn-save img.icon {
+    background-color: white;
+    color: #333;
+    width: 30px;
+    height: 30px;
+}
+
+.overview-lalala {
+    max-width: 800px;
+    margin: 12px auto 0 auto;
+    padding: 12px 16px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-light);
+    background-color: transparent;
+    border-radius: 8px;
+}
+
+.top-picks-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+    overflow: hidden;
+    color: white;
+}
+
+.scroll-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+
+#topPicksScroll {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    overflow-x: auto;
+}
+
+#movieDetails {
+    background-color: rgba(0, 0, 0, 0.7);
+    /* dunkler Hintergrund, damit Text lesbar bleibt */
+    padding: 2rem;
+    border-radius: 16px;
+    color: white;
+    max-width: 1000px;
+    margin: auto;
+}
+
+
+/* Media Queries für kleinere Bildschirme */
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 20px;
+    }
+    .hero h2 {
+        font-size: 20px;
+    }
+    .hero ol {
+        margin-left: 15px;
+    }
+    .hero button {
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 15px;
+    }
+    .hero h2 {
+        font-size: 18px;
+    }
+    .hero ol {
+        margin-left: 10px;
+    }
+    .hero button {
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .movie-header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .movie-poster {
+        width: 100%;
+        height: auto;
+    }
+    .movie-info {
+        width: 100%;
+        gap: 1rem;
+    }
+}

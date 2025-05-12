@@ -18,7 +18,14 @@ async function fetchData() {
         const roundedRating = details.vote_average.toFixed(1);
         const keywordList = keywords.keywords.map(keyword => keyword.name).join(', ');
 
+        document.body.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${details.backdrop_path || details.poster_path})`;
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundPosition = 'center';
+        document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundAttachment = 'fixed';
+
         detailsEl.innerHTML = `
+
         <div class="movie-header">
           <img class="movie-poster" src="https://image.tmdb.org/t/p/w300${details.poster_path}" alt="${details.title}" />
           <div class="movie-info">
@@ -30,26 +37,20 @@ async function fetchData() {
               <p><strong>Rating:</strong> ${roundedRating}</p>
             </div>
 
-            <p>${details.genres.map(g => `<span class="genre">${g.name}</span>`).join(' ')}</p>
+            <p>${details.genres.map(g => `<span class="keyword">${g.name}</span>`).join(' ')}</p>
 
             <div class="movie-details">
               <p><strong>Director:</strong> ${director?.name || 'N/A'}</p>
               <p><strong>Author:</strong> ${details.writers ? details.writers.map(w => w.name).join(', ') : 'N/A'}</p>
             </div>
 
-            <div class="keywords">
-              <strong class="key">Keywords:</strong>
-              <div class="keyword-list">
-                ${keywords.keywords.map(keyword => `
-                  <span class="keyword">${keyword.name}</span>
-                `).join('')}
-              </div>
-            </div>
+
+
         
             <div class="movie-buttons">
               ${trailer ? `<button class="trailer-button" onclick="openModal('${trailer.key}')">Watch Trailer</button>` : ''}
-              <button class="btn-like"></button>
-              <button class="btn-save"></button>
+              <button class="btn-like"><img src="/photos/heart.png" alt="Like" class="icon"></button>
+              <button class="btn-save"><img src="/photos/save.png" alt="Like" class="icon"></button>
             </div>
           </div>
         </div>
@@ -86,3 +87,19 @@ function closeModal() {
 }
 
 fetchData();
+
+/*        keyword code
+ 
+            <div class="keywords">
+              <strong class="key">Keywords:</strong>
+              <div class="keyword-list">
+                ${keywords.keywords && keywords.keywords.length > 0
+                  ? keywords.keywords
+                      .slice(0, 5)
+                      .map(keyword => `<span class="keyword">${keyword.name}</span>`)
+                      .join('')
+                  : '<span class="keyword">None</span>'
+                }
+              </div>
+            </div>
+*/

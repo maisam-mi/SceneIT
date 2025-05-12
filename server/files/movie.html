@@ -6,10 +6,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Details</title>
-    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/movie.css" />
 </head>
 
-<body>
+<body class="mukta-regular">
 
     <div class="filmstrip-side left"></div>
     <div class="filmstrip-side right"></div>
@@ -17,21 +17,24 @@
 
     <header class="navbar">
         <div class="logo" onclick="window.location.href='index.html'">
-            <img src="/photos/logo.png" alt="Logo" class="logo-image" /> SceneIT
+            <img src="/photos/logo.png" alt="Logo" class="logo-image" /> <span class="mukta-bold" style="font-size: 1rem">SceneIT</span>
         </div>
 
         <!-- Suchleiste -->
         <div class="search-container">
             <div class="search-wrapper">
                 <input class="search-input" type="text" placeholder="Action, Drama" />
-                <img src="/photos/lupe.png" alt="Lupe" class="search-img" />
+                <!--<img src="/photos/lupe.png" alt="Lupe" class="search-img" />später vielleicht-->
             </div>
         </div>
 
-        <nav class="nav-buttons">
-            <button class="btn-primary" onclick="openModal('loginModal')">Log In</button>
-        </nav>
+        <div class="nav-buttons">
+            <button class="btn-primary mukta-medium" onclick="openModal('loginModal')">Log In</button>
+        </div>
     </header>
+
+
+
 
     <div class="background-image"></div>
     <div class="main-content">
