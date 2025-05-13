@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 return `
                     <div class="movie-card">
-                        <a href="tvshow.html?id=${serie.id}">
+                        <a href="tvSeries.html?id=${serie.id}">
                             <img src="https://image.tmdb.org/t/p/w300${serie.poster_path}" alt="${serie.name}" />
                         </a>
                         <div class="info">
@@ -107,5 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ==== Initialer Ladevorgang ====
     loadMovies(); // Standard: Filme
+    loadSeries();
     loadActors(); // Schauspieler
 });

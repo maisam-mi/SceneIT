@@ -132,6 +132,20 @@ app.get('/movies/search', async(req, res) => {
     }
 });
 
+app.get('/tvSeries/search', async(req, res) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/discover/tv?with_genres=${req.query.genreId}`,
+            options,
+        );
+        const series = (await response.json()).results;
+        res.send(series);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Error fetching tv series of search request');
+    }
+});
+
 // it responses an array of all genres. 
 app.get('/genres', async(req, res) => {
     try {
@@ -141,6 +155,17 @@ app.get('/genres', async(req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).send('Error fetching genres');
+    }
+});
+
+app.get('/tvSeries/genres', async(req, res) => {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/genre/tv/list`, options);
+        const genres = (await response.json()).genres;
+        res.send(genres);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Error fetching tv series genres');
     }
 });
 
