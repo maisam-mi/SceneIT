@@ -1,8 +1,25 @@
 const express = require('express');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
+const fs = require('fs');
+const jwt = require('jsonwebtoken');
 const path = require('path');
 
 const app = express();
+app.use(express.json());
+
+const ACCOUNTS_FILE = './accounts.json';
+const JWT_SECRET = 'supersecretkey';
+
+function readAccounts() {
+  if (!fs.existsSync(ACCOUNTS_FILE)) fs.writeFileSync(ACCOUNTS_FILE, '[]');
+  const data = fs.readFileSync(ACCOUNTS_FILE);
+  return JSON.parse(data);
+}
+
+function writeAccounts(users) {
+  fs.writeFileSync(ACCOUNTS_FILE, JSON.stringify(users, null, 2));
+}
 
 app.use(cors());
 
@@ -16,9 +33,41 @@ const options = {
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmFkNDlhMGQ1ZmFjMjg1ODc5MGUxYWUzMTQzYzY2ZSIsIm5iZiI6MS43NDIyMzYxMDM2NTc5OTk4ZSs5LCJzdWIiOiI2N2Q4NjljNzAyZTVhYWM0NDMwMTE0YjkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.utCg0oq0jdlR6AjmPNyIqcdclwsIfVwmlMUbPZ867gA',
     },
 };
+
 //hi
 app.get('/hello', (req, res) => {
     res.send('Hello BugBusters!');
+});
+
+// Here a new account is registered. 
+app.post('/register', async (req, res) => {
+    const { username, password } = req.body;
+    const accounts = readAccounts();
+
+    console.log(req.body);
+
+    if (accounts.find((account) => account.username === username)) {
+      return res.status(400).json({ error: 'Account already exists' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    accounts.push({ username, password: hashedPassword });
+    writeAccounts(accounts);
+
+    res.status(201).json({ message: 'Account registered successfully' });
+});
+
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  const accounts = readAccounts();
+
+  const account = accounts.find((account) => account.username === username);
+  if (!account || !(await bcrypt.compare(password, account.password))) {
+    return res.status(401).json({ error: 'Invalid credentials' });
+  }
+
+  const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '1h' });
+  res.json({ token });
 });
 
 // it responses an array of currently highlighted movies. 
