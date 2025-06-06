@@ -1,4 +1,5 @@
 const express = require('express');
+const { authMiddleware } = require('../authorization');
 const controller = require('../controller/tvseries.controller');
 
 const router = express.Router();
@@ -18,5 +19,14 @@ router.get('/search', controller.searchTvSeries);
 
 // it responses an array of all genres.
 router.get('/genres', controller.getGenres);
+
+// protected endpoint, it responses an array of favourites tv series.
+router.get('/favourite', authMiddleware, controller.getFavouriteList);
+
+// protected endpoint, it adds a tv serie as favourite for an account.
+router.post('/favourite', authMiddleware, controller.addTvSerieToFavourite);
+
+// protected endpoint, it deletes a tv serie from the favourite list for an account.
+router.delete('/favourite/:tvSerieId', authMiddleware, controller.deleteTvSerieFromFavourite);
 
 module.exports = router;

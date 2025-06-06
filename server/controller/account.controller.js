@@ -5,6 +5,7 @@ const { readFile, writeFile } = require('../fileMethods');
 const accounts = require('../data/accounts.json');
 
 const ACCOUNTS_FILE = './server/data/accounts.json';
+const FAVOURITES_FILE = './server/data/favourites.json';
 const JWT_SECRET = 'supersecretkey';
 
 const register = async (req, res) => {
@@ -18,8 +19,26 @@ const register = async (req, res) => {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-  accounts.push({ username, password: hashedPassword });
+  const account = {
+    username, 
+    password: hashedPassword, 
+    quizResult: {
+      type: "", 
+      genres: [],
+      keywords: []
+    }
+  }
+  accounts.push(account);
   writeFile(ACCOUNTS_FILE, accounts);
+
+  // an favourite object is also added in favourites.json for this account. 
+  const favourites = readFile(FAVOURITES_FILE);
+  favourites.push({
+    username,
+    movies: [],
+    tvseries: []
+  });
+  writeFile(FAVOURITES_FILE, favourites);
 
   console.log('Registration was successfull!');
 
@@ -41,14 +60,20 @@ const login = async (req, res) => {
 };
 
 const deleteAccount = async (req, res) => {
-  const { username } = req.params;
+  const { username } = req.account;
   if (!accounts.find((account) => account.username === username))
     res.status(400).json({ error: 'Account could not be deleted' });
 
   const updatedAccounts = readFile(ACCOUNTS_FILE).filter(
-    (account) => account.username !== username,
+    (account) => account.username !== username
   );
   writeFile(ACCOUNTS_FILE, updatedAccounts);
+
+  // The favourite object for this account gets also deleted. 
+  const updatedFavourites = readFile(FAVOURITES_FILE).filter(
+    (favourite) => favourite.username !== username
+  );
+  writeFile(FAVOURITES_FILE, updatedFavourites);
 
   res.json({ message: 'Account is deleted successfully.' });
 };

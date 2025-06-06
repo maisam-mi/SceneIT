@@ -3,7 +3,16 @@
     "username": "",
     "password": "",
     "quizResult": {
-      "typ": "",
+      "type": "",
+      "genres": [],
+      "keywords": []
+    }
+  },
+  {
+    "username": "cristina",
+    "password": "$2b$10$vxR3mUOW1OqSJtxAz1au/uJKmoe5CPSGHE4eQJgVJUbTYpeLFcdRG",
+    "quizResult": {
+      "type": "",
       "genres": [],
       "keywords": []
     }

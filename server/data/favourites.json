@@ -1,7 +1,12 @@
 [
-    {
-      "username": "",
-      "movies": [],
-      "tvseries": []
-    }
+  {
+    "username": "",
+    "movies": [],
+    "tvseries": []
+  },
+  {
+    "username": "cristina",
+    "movies": [],
+    "tvseries": []
+  }
 ]

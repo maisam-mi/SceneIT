@@ -8,6 +8,8 @@ const tmdbApiOptions = {
   },
 };
 
+const FAVOURITES_FILE = './server/data/favourites.json';
+
 const getHighlights = async (req, res) => {
   try {
     const response = await fetch(`${tmdbApiBaseUrl}/tv/popular`, tmdbApiOptions);
@@ -67,4 +69,63 @@ const getGenres = async (req, res) => {
   }
 };
 
-module.exports = { getHighlights, getDetailsOfTvSerie, searchTvSeries, getGenres };
+const getFavouriteList = async (req, res) => {
+  const { username } = req.account;
+  if (!account)
+    res.status(404).json({ error: 'The favourite list for this account is not found!' });
+
+  const favourite = readFile(FAVOURITES_FILE).find((favourite) => favourite.username === username);
+  res.status(201).json(favourite.tvseries);
+};
+
+const addTvSerieToFavourite = async (req, res) => {
+  const tvSerie = req.body.tvSerie;
+
+  const favourites = readFile(FAVOURITES_FILE);
+
+  const favourite = favourites.find((favourite) => favourite.username === req.account.username);
+  if (!favourite) res.status(404).json({ message: 'The favourite list is not found!' });
+
+  favourites.map((favourite) => {
+    if (favourite.username === req.account.username) favourite.tvseries.push(tvSerie);
+  });
+
+  writeFile(FAVOURITES_FILE, favourites);
+
+  res.status(201).json({ message: 'The TV serie is added to favourite list!' });
+};
+
+const deleteTvSerieFromFavourite = async (req, res) => {
+  const { tvSerieId } = req.params;
+
+  const favourites = readFile(FAVOURITES_FILE);
+
+  const favourite = favourites.find((favourite) => favourite.username === req.account.username);
+  if (!favourite) return res.status(404).json({ message: 'The favourite list is not found!' });
+
+  favourites.forEach((favourite) => {
+    if (favourite.username === req.account.username) {
+      favourite.tvseries = favourite.tvseries.filter(
+        (tvserie) => tvserie.id !== parseInt(tvSerieId),
+      );
+    }
+  });
+
+  try {
+    writeFile(FAVOURITES_FILE, favourites);
+    res.status(204).json({ message: 'The TV Serie is deleted form favourite list!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to update favourites!' });
+  }
+};
+
+module.exports = {
+  getHighlights,
+  getDetailsOfTvSerie,
+  searchTvSeries,
+  getGenres,
+  getFavouriteList,
+  addTvSerieToFavourite,
+  deleteTvSerieFromFavourite,
+};
