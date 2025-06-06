@@ -5,6 +5,7 @@ const path = require('path');
 const accountRoute = require('./routes/account.route');
 const moviesRoute = require('./routes/movies.route');
 const tvSeriesRoute = require('./routes/tvseries.route');
+const actorsRoute = require('./routes/actors.route');
 
 const app = express();
 app.use(express.json());
@@ -49,17 +50,8 @@ app.use('/movies', moviesRoute);
 // All tv series requests forwarded to this route. 
 app.use('/tvSeries', tvSeriesRoute);
 
-// it responses an array of currently popular actors.
-app.get('/actors', async (req, res) => {
-  try {
-    const response = await fetch(`${tmdbApiBaseUrl}/person/popular`, tmdbApiOptions);
-    const actors = (await response.json()).results;
-    res.send(actors);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send('Error fetching actors');
-  }
-});
+// All actors requests forwarded to this route. 
+app.use('/actors', actorsRoute);
 
 // alle gelikten Filme abrufen
 app.get('/api/liked-movies', (req, res) => {
