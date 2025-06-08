@@ -16,5 +16,23 @@
       "genres": [],
       "keywords": []
     }
+  },
+  {
+    "username": "test1",
+    "password": "$2b$10$6oQv0BwXX6dtG.SleR8UzOanQYwsg5DO3yFv0itWkhu8Ysw8HKUYG",
+    "quizResult": {
+      "type": "",
+      "genres": [],
+      "keywords": []
+    }
+  },
+  {
+    "username": "test2",
+    "password": "$2b$10$2P2xZBUTBlRhfiQhprmyBOEj2m7woCkue4jxLGBEs0.P9Do6DD9SC",
+    "quizResult": {
+      "type": "",
+      "genres": [],
+      "keywords": []
+    }
   }
 ]

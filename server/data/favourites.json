@@ -8,5 +8,23 @@
     "username": "cristina",
     "movies": [],
     "tvseries": []
+  },
+  {
+    "username": "test1",
+    "movies": [
+      552524,
+      870028,
+      1233413,
+      757725
+    ],
+    "tvseries": []
+  },
+  {
+    "username": "test2",
+    "movies": [
+      552524,
+      1233413
+    ],
+    "tvseries": []
   }
 ]
