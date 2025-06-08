@@ -21,9 +21,19 @@
     "username": "test1",
     "password": "$2b$10$6oQv0BwXX6dtG.SleR8UzOanQYwsg5DO3yFv0itWkhu8Ysw8HKUYG",
     "quizResult": {
-      "type": "",
-      "genres": [],
-      "keywords": []
+      "type": "movie",
+      "genres": [
+        "Action"
+      ],
+      "genre_ids": [
+        28
+      ],
+      "keywords": [
+        "revenge"
+      ],
+      "keyword_ids": [
+        9748
+      ]
     }
   },
   {
