@@ -1,5 +1,8 @@
 const { readFile, writeFile } = require('../fileMethods');
 
+const omdbApiBaseUrl = 'http://www.omdbapi.com';
+const omdbapiAPIkey = '2213abc8';
+
 const TMDB_API_BASE_URL = 'https://api.themoviedb.org/3';
 const TMDB_API_KEY = '0fb85046bace36532f9e8ccb89101157';
 
@@ -72,6 +75,11 @@ const getDetailsOfTvSerie = async (req, res) => {
         } else {
             tvSerie.keywords = (await response.json()).keywords;
         }
+
+        response = await fetch(
+          `${omdbApiBaseUrl}/?apikey=${omdbapiAPIkey}&t=${tvSerie.original_title}`,
+        );
+        tvSerie.ratings = (await response.json()).Ratings;
 
         res.send(tvSerie);
     } catch (err) {
