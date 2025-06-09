@@ -2,9 +2,9 @@ const { readFile, writeFile } = require('../fileMethods');
 
 const TMDB_API_KEY = '0fb85046bace36532f9e8ccb89101157';
 const ACCOUNTS_FILE = './server/data/accounts.json';
-const TMDB_API_BASE_URL = 'https://api.themoviedb.org/3'; // Define base URL for fetch calls
+const TMDB_API_BASE_URL = 'https://api.themoviedb.org/3'; 
 
-//TMDB Genre ID Mappings (separated for Movies and TV Shows)
+// TMDB Genre ID Mappings (separated for Movies and TV Shows)
 const TMDB_MOVIE_GENRE_MAP = {
   Action: 28,
   Adventure: 12,
@@ -73,20 +73,18 @@ const buildUrlWithQueryParams = (baseUrl, params) => {
   return url.toString();
 };
 
-const submitQuizAndGetRecommendations = async (req, res) => {
+const saveQuizResults = async (req, res) => {
   const { mediaType, genres, keywords } = req.body;
-  const username = req.account.username;
+  const username = req.account.username; // Comes from authMiddleware
 
   if (!username || !mediaType || !Array.isArray(genres) || !Array.isArray(keywords)) {
     return res
       .status(400)
-      .json({ message: 'Missing required quiz data (username, mediaType, genres, keywords).' });
+      .json({ message: 'Missing required quiz data (mediaType, genres, keywords).' });
   }
   if (mediaType !== 'movie' && mediaType !== 'tv') {
     return res.status(400).json({ message: 'Invalid mediaType. Must be "movie" or "tv".' });
   }
-
-  let recommendations = []; // Initialize to empty array
 
   try {
     // Select the correct genre map based on mediaType
@@ -102,16 +100,15 @@ const submitQuizAndGetRecommendations = async (req, res) => {
       .map((keywordName) => TMDB_KEYWORD_MAP[keywordName])
       .filter((id) => id !== undefined);
 
-    // Save quiz results to accounts.json (synchronous operations)
+    // Save quiz results to accounts.json
     const accounts = readFile(ACCOUNTS_FILE);
     const accountIndex = accounts.findIndex((acc) => acc.username === username);
 
     if (accountIndex === -1) {
       return res.status(404).json({ message: 'Account not found.' });
     }
-    if (!accounts[accountIndex].quizResult) {
-      accounts[accountIndex].quizResult = {};
-    }
+
+    // Update the quizResult for the account
     accounts[accountIndex].quizResult = {
       type: mediaType,
       genres: genres,
@@ -120,9 +117,53 @@ const submitQuizAndGetRecommendations = async (req, res) => {
       keyword_ids: keywordIds,
     };
     writeFile(ACCOUNTS_FILE, accounts);
-    res.status(200).json({ message: 'The Quizresult is saved.' });
 
-    //Recommendation Fetching Logic (with Fallbacks using Fetch API)
+    return res.status(200).json({ message: 'Quiz results saved successfully.' });
+  } catch (error) {
+    console.error('Error saving quiz results:', error);
+    return res.status(500).json({ message: 'Failed to save quiz results.' });
+  }
+};
+
+const getQuizRecommendations = async (req, res) => {
+  const username = req.account.username; 
+
+  try {
+    const accounts = readFile(ACCOUNTS_FILE);
+    const account = accounts.find((acc) => acc.username === username);
+
+    if (!account) {
+      return res.status(404).json({ message: 'Account not found.' });
+    }
+    if (!account.quizResult || !account.quizResult.type) {
+      return res
+        .status(404)
+        .json({ message: 'No quiz results found for this account. Please submit the quiz first.' });
+    }
+
+    const { type: mediaType, genre_ids: genreIds, keyword_ids: keywordIds } = account.quizResult;
+
+  
+    const fetchRecommendations = async (params, endpoint = `/discover/${mediaType}`) => {
+      const url = buildUrlWithQueryParams(`${TMDB_API_BASE_URL}${endpoint}`, params);
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => ({}));
+        console.error(
+          `TMDB API Error: ${response.status} - ${
+            errorBody.status_message || response.statusText || 'Unknown error'
+          }`,
+        );
+        // Throw an error to trigger fallback logic
+        throw new Error(`TMDB API request failed with status ${response.status}`);
+      }
+      const data = await response.json();
+      return data.results || []; // Ensure we always return an array
+    };
+
+    let recommendations = []; // Initialize to empty array
+
     // Initial, most strict parameters
     let currentDiscoverParams = {
       api_key: TMDB_API_KEY,
@@ -134,32 +175,14 @@ const submitQuizAndGetRecommendations = async (req, res) => {
       page: 1,
     };
 
-    if (genreIds.length > 0) {
+    if (genreIds && genreIds.length > 0) {
       currentDiscoverParams.with_genres = genreIds.join(',');
     }
-    if (keywordIds.length > 0) {
+    if (keywordIds && keywordIds.length > 0) {
       currentDiscoverParams.with_keywords = keywordIds.join(',');
     }
 
-    //Fetch Helper Function (to reduce redundancy)
-    const fetchRecommendations = async (params, endpoint = `/discover/${mediaType}`) => {
-      const url = buildUrlWithQueryParams(`${TMDB_API_BASE_URL}${endpoint}`, params);
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        const errorBody = await response.json().catch(() => ({})); // Try to parse error body, default to empty
-        console.error(
-          `TMDB API Error: ${response.status} - ${
-            errorBody.status_message || response.statusText || 'Unknown error'
-          }`,
-        );
-        throw new Error(`TMDB API request failed with status ${response.status}`);
-      }
-      const data = await response.json();
-      return data.results || []; // Ensure we always return an array
-    };
-
-    //Attempt 1: Strict Query
+    // Attempt 1: Strict Query
     try {
       recommendations = await fetchRecommendations(currentDiscoverParams);
       if (recommendations.length > 0) {
@@ -173,7 +196,7 @@ const submitQuizAndGetRecommendations = async (req, res) => {
       );
     }
 
-    //Fallback 1: Remove Keywords
+    // Fallback 1: Remove Keywords
     console.log('Quiz: No results from strict query. Removing keywords and retrying...');
     let fallbackParams1 = { ...currentDiscoverParams };
     delete fallbackParams1.with_keywords;
@@ -187,7 +210,7 @@ const submitQuizAndGetRecommendations = async (req, res) => {
       console.warn('Quiz: Fallback 1 failed. Error:', error.message);
     }
 
-    //Fallback 2: Remove Keywords AND Genres
+    // Fallback 2: Remove Keywords AND Genres
     console.log('Quiz: Still no results. Removing both genres and keywords and retrying...');
     let fallbackParams2 = { ...currentDiscoverParams };
     delete fallbackParams2.with_keywords;
@@ -229,17 +252,18 @@ const submitQuizAndGetRecommendations = async (req, res) => {
     return res
       .status(200)
       .json({
-        message:
-          'No specific recommendations found for your choices. Please try different quiz answers or check back later.',
+        message: 'No specific recommendations found for your choices. Please try different quiz answers or check back later.',
+        recommendations: [] // Ensure recommendations array is always sent, even if empty
       });
   } catch (error) {
-    // This outer catch handles errors from file operations or unexpected issues
-    console.error('Error in submitQuizAndGetRecommendations (outer catch):', error.message);
+    console.error('Error getting quiz recommendations (outer catch):', error.message);
     console.error('Error stack:', error.stack);
-    res.status(500).json({ message: 'Failed to process quiz or fetch recommendations.' });
+    return res.status(500).json({ message: 'Failed to retrieve recommendations.' });
   }
 };
 
+
 module.exports = {
-  submitQuizAndGetRecommendations,
+  saveQuizResults,
+  getQuizRecommendations,
 };

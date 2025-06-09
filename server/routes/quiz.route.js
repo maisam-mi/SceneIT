@@ -1,11 +1,12 @@
 const express = require('express');
-const { authMiddleware } = require('../authorization');
+const { authMiddleware } = require('../authorization'); 
 const controller = require('../controller/quiz.controller');
 
 const router = express.Router();
 
-// Route to submit quiz answers and get recommendations
-// This route is protected by authMiddleware as it involves user-specific data
-router.post('/submit', authMiddleware, controller.submitQuizAndGetRecommendations);
+router.post('/save-results', authMiddleware, controller.saveQuizResults);
+
+
+router.get('/recommendations', authMiddleware, controller.getQuizRecommendations);
 
 module.exports = router;
