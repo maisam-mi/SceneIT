@@ -4,7 +4,7 @@ const path = require('path');
 
 const accountRoute = require('./routes/account.route');
 const moviesRoute = require('./routes/movies.route');
-const tvSeriesRoute = require('./routes/tvseries.route');
+const tvSeriesRoute = require('./routes/tvSeries.route');
 const actorsRoute = require('./routes/actors.route');
 const quizRoute = require('./routes/quiz.route');
 
