@@ -2,7 +2,7 @@ const { readFile, writeFile } = require('../fileMethods');
 
 const TMDB_API_KEY = '0fb85046bace36532f9e8ccb89101157';
 const ACCOUNTS_FILE = './server/data/accounts.json';
-const TMDB_API_BASE_URL = 'https://api.themoviedb.org/3'; 
+const TMDB_API_BASE_URL = 'https://api.themoviedb.org/3';
 
 // TMDB Genre ID Mappings (separated for Movies and TV Shows)
 const TMDB_MOVIE_GENRE_MAP = {
@@ -74,6 +74,9 @@ const buildUrlWithQueryParams = (baseUrl, params) => {
 };
 
 const saveQuizResults = async (req, res) => {
+
+
+
   const { mediaType, genres, keywords } = req.body;
   const username = req.account.username; // Comes from authMiddleware
 
@@ -126,7 +129,7 @@ const saveQuizResults = async (req, res) => {
 };
 
 const getQuizRecommendations = async (req, res) => {
-  const username = req.account.username; 
+  const username = req.account.username;
 
   try {
     const accounts = readFile(ACCOUNTS_FILE);
@@ -143,7 +146,7 @@ const getQuizRecommendations = async (req, res) => {
 
     const { type: mediaType, genre_ids: genreIds, keyword_ids: keywordIds } = account.quizResult;
 
-  
+
     const fetchRecommendations = async (params, endpoint = `/discover/${mediaType}`) => {
       const url = buildUrlWithQueryParams(`${TMDB_API_BASE_URL}${endpoint}`, params);
       const response = await fetch(url);
@@ -151,8 +154,7 @@ const getQuizRecommendations = async (req, res) => {
       if (!response.ok) {
         const errorBody = await response.json().catch(() => ({}));
         console.error(
-          `TMDB API Error: ${response.status} - ${
-            errorBody.status_message || response.statusText || 'Unknown error'
+          `TMDB API Error: ${response.status} - ${errorBody.status_message || response.statusText || 'Unknown error'
           }`,
         );
         // Throw an error to trigger fallback logic

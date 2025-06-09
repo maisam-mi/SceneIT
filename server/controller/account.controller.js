@@ -20,10 +20,10 @@ const register = async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const account = {
-    username, 
-    password: hashedPassword, 
+    username,
+    password: hashedPassword,
     quizResult: {
-      type: "", 
+      type: "",
       genres: [],
       keywords: []
     }
@@ -78,4 +78,28 @@ const deleteAccount = async (req, res) => {
   res.json({ message: 'Account is deleted successfully.' });
 };
 
-module.exports = { register, login, deleteAccount };
+const changePassword = async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+  const username = req.account.username;
+
+  const accounts = readFile(ACCOUNTS_FILE);
+  const account = accounts.find(acc => acc.username === username);
+
+  if (!account) {
+    return res.status(404).json({ error: 'Account not found' });
+  }
+
+  const isMatch = await bcrypt.compare(oldPassword, account.password);
+  if (!isMatch) {
+    return res.status(401).json({ error: 'Old password is incorrect' });
+  }
+
+  const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+  account.password = hashedNewPassword;
+
+  writeFile(ACCOUNTS_FILE, accounts);
+
+  res.json({ message: 'Password updated successfully' });
+};
+
+module.exports = { register, login, deleteAccount, changePassword };
