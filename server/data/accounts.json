@@ -63,5 +63,48 @@
         9715
       ]
     }
+  },
+  {
+    "username": "we",
+    "password": "$2b$10$ghTC2M0APy2hS4w8i3jSIewfY/aJGxkU4HcYM0RQ9m4nARIilNr5.",
+    "quizResult": {
+      "type": "movie",
+      "genres": [
+        "Action"
+      ],
+      "genre_ids": [
+        28
+      ],
+      "keywords": [
+        "superhero"
+      ],
+      "keyword_ids": [
+        9715
+      ]
+    }
+  },
+  {
+    "username": "qwe",
+    "password": "$2b$10$DBm2evhpNb1XwQAJCmqlXuuicD7mYJt7nlHC1Va4JbMDn1LAtcg7G",
+    "quizResult": {
+      "type": "tv",
+      "genres": [
+        "Animation",
+        "Documentary",
+        "Adventure"
+      ],
+      "genre_ids": [
+        16,
+        99
+      ],
+      "keywords": [
+        "time travel",
+        "based on true story"
+      ],
+      "keyword_ids": [
+        4379,
+        9672
+      ]
+    }
   }
 ]
