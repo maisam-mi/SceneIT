@@ -7,6 +7,7 @@ const moviesRoute = require('./routes/movies.route');
 const tvSeriesRoute = require('./routes/tvSeries.route');
 const actorsRoute = require('./routes/actors.route');
 const quizRoute = require('./routes/quiz.route');
+const searchRoute = require('./routes/search.route');
 
 const app = express();
 app.use(express.json());
@@ -41,7 +42,9 @@ app.use('/tvSeries', tvSeriesRoute);
 // All actors requests forwarded to this route. 
 app.use('/actors', actorsRoute);
 
-app.use('/quiz',quizRoute);
+app.use('/quiz', quizRoute);
+
+app.use('/search', searchRoute)
 
 app.listen(3100);
 

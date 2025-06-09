@@ -55,19 +55,6 @@ const getDetailsOfMovie = async (req, res) => {
   }
 };
 
-const searchMovies = async (req, res) => {
-  try {
-    const response = await fetch(
-      `${tmdbApiBaseUrl}/discover/movie?with_genres=${req.query.genreId}`,
-      tmdbApiOptions,
-    );
-    const movies = (await response.json()).results;
-    res.send(movies);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send('Error fetching movies of search request');
-  }
-};
 
 const getGenres = async (req, res) => {
   try {
@@ -80,16 +67,7 @@ const getGenres = async (req, res) => {
   }
 };
 
-/*
-const getFavouriteList = async (req, res) => {
-  const { username } = req.account;
-  if (!account)
-    res.status(404).json({ error: 'The favourite list for this account is not found!' });
 
-  const favourite = readFile(FAVOURITES_FILE).find((favourite) => favourite.username === username);
-  res.status(201).json(favourite.movies);
-};
-*/
 
 const getFavouriteList = async (req, res) => {
   const { username } = req.account;
@@ -191,7 +169,6 @@ const deleteMovieFromFavourite = async (req, res) => {
 module.exports = {
   getHighlights,
   getDetailsOfMovie,
-  searchMovies,
   getGenres,
   getFavouriteList,
   addMovieToFavourite,

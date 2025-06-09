@@ -12,10 +12,6 @@ router.get('/highlight', controller.getHighlights);
 //      movieId => the id of the movie.
 router.get('/details/:movieId', controller.getDetailsOfMovie);
 
-// it responses an array of movies as result of searching through genres.
-// query:
-//      genreId => id of genre. if theres more genres, give the ids seperated with comma. e.g. : 12,28
-router.get('/search', controller.searchMovies);
 
 // it responses an array of all genres.
 router.get('/genres', controller.getGenres);

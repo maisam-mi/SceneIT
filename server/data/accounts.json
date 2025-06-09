@@ -106,5 +106,26 @@
         9672
       ]
     }
+  },
+  {
+    "username": "test3",
+    "password": "$2b$10$9c444ceWUfAr9vgKWE.XLe2odo.Z/fedgJGx2qkDfuwp5CH2gRLMO",
+    "quizResult": {
+      "type": "movie",
+      "genres": [
+        "Adventure",
+        "Comedy"
+      ],
+      "genre_ids": [
+        12,
+        35
+      ],
+      "keywords": [
+        "time travel"
+      ],
+      "keyword_ids": [
+        4379
+      ]
+    }
   }
 ]

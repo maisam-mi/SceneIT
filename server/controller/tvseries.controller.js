@@ -88,27 +88,6 @@ const getDetailsOfTvSerie = async (req, res) => {
     }
 };
 
-const searchTvSeries = async (req, res) => {
-    try {
-        const url = buildUrlWithQueryParams(`${tmdbApiBaseUrl}/discover/tv`, {
-            api_key: TMDB_API_KEY,
-            with_genres: req.query.genreId,
-            language: 'en-US',
-            with_original_language: 'en'
-        });
-        const response = await fetch(url);
-        if (!response.ok) {
-            const errorBody = await response.json().catch(() => ({}));
-            console.error(`TMDB Search API Error: ${response.status} - ${errorBody.status_message || response.statusText}`);
-            return res.status(response.status).send('Error fetching tv series for search request');
-        }
-        const series = (await response.json()).results;
-        res.send(series);
-    } catch (err) {
-        console.log('Error fetching tv series of search request:', err);
-        res.status(500).send('Error fetching tv series of search request');
-    }
-};
 
 const getGenres = async (req, res) => {
     try {
@@ -258,7 +237,6 @@ const deleteTvSerieFromFavourite = (req, res) => {
 module.exports = {
     getHighlights,
     getDetailsOfTvSerie,
-    searchTvSeries,
     getGenres,
     getFavouriteList: getFavouriteTvList, 
     addTvSerieToFavourite,
