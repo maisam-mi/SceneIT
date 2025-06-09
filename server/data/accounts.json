@@ -44,5 +44,24 @@
       "genres": [],
       "keywords": []
     }
+  },
+  {
+    "username": "lost",
+    "password": "$2b$10$xT82vEw5stJBPo3ULuTSyuRfWVpCbw4bVYwYh.huZ7MOM42eDMfBu",
+    "quizResult": {
+      "type": "movie",
+      "genres": [
+        "Action"
+      ],
+      "genre_ids": [
+        28
+      ],
+      "keywords": [
+        "superhero"
+      ],
+      "keyword_ids": [
+        9715
+      ]
+    }
   }
 ]
