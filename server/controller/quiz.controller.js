@@ -74,9 +74,6 @@ const buildUrlWithQueryParams = (baseUrl, params) => {
 };
 
 const saveQuizResults = async (req, res) => {
-
-
-
   const { mediaType, genres, keywords } = req.body;
   const username = req.account.username; // Comes from authMiddleware
 
@@ -125,6 +122,28 @@ const saveQuizResults = async (req, res) => {
   } catch (error) {
     console.error('Error saving quiz results:', error);
     return res.status(500).json({ message: 'Failed to save quiz results.' });
+  }
+};
+
+const getQuizResults = async (req, res) => {
+  const username = req.account.username; // kommt aus authMiddleware
+
+  try {
+    const accounts = readFile(ACCOUNTS_FILE);
+    const account = accounts.find((acc) => acc.username === username);
+
+    if (!account) {
+      return res.status(404).json({ message: 'Account not found.' });
+    }
+
+    if (!account.quizResult) {
+      return res.status(404).json({ message: 'No quiz results found for this user.' });
+    }
+
+    return res.status(200).json({ quizResult: account.quizResult });
+  } catch (error) {
+    console.error('Error retrieving quiz results:', error);
+    return res.status(500).json({ message: 'Failed to retrieve quiz results.' });
   }
 };
 
@@ -268,4 +287,5 @@ const getQuizRecommendations = async (req, res) => {
 module.exports = {
   saveQuizResults,
   getQuizRecommendations,
+  getQuizResults,
 };
