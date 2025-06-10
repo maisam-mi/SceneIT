@@ -79,7 +79,9 @@ const deleteAccount = async (req, res) => {
 };
 
 const changePassword = async (req, res) => {
+  console.log(req.body);
   const { oldPassword, newPassword } = req.body;
+  
   const username = req.account.username;
 
   const accounts = readFile(ACCOUNTS_FILE);

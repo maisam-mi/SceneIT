@@ -9,15 +9,6 @@
     }
   },
   {
-    "username": "cristina",
-    "password": "$2b$10$vxR3mUOW1OqSJtxAz1au/uJKmoe5CPSGHE4eQJgVJUbTYpeLFcdRG",
-    "quizResult": {
-      "type": "",
-      "genres": [],
-      "keywords": []
-    }
-  },
-  {
     "username": "test1",
     "password": "$2b$10$6oQv0BwXX6dtG.SleR8UzOanQYwsg5DO3yFv0itWkhu8Ysw8HKUYG",
     "quizResult": {
@@ -125,6 +116,25 @@
       ],
       "keyword_ids": [
         4379
+      ]
+    }
+  },
+  {
+    "username": "wer",
+    "password": "$2b$10$Dgg8pVxcr3gGvWzj0kCcd.dzT9PTGiHJAIBkACn0ddWZlgeNiUP0u",
+    "quizResult": {
+      "type": "movie",
+      "genres": [
+        "Crime"
+      ],
+      "genre_ids": [
+        80
+      ],
+      "keywords": [
+        "superhero"
+      ],
+      "keyword_ids": [
+        9715
       ]
     }
   }

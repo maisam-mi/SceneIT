@@ -5,11 +5,6 @@
     "tvseries": []
   },
   {
-    "username": "cristina",
-    "movies": [],
-    "tvseries": []
-  },
-  {
     "username": "test1",
     "movies": [
       552524,
@@ -54,5 +49,10 @@
     "tvseries": [
       498
     ]
+  },
+  {
+    "username": "wer",
+    "movies": [],
+    "tvseries": []
   }
 ]
